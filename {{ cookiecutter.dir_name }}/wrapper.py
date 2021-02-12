@@ -59,16 +59,16 @@ class MissingParameterException(Exception):
 
 # Checking inputs
 {% for inp in cookiecutter.inputs.split(',') %}
-if "{{ inp.strip() }}" in snakemake.inputs.keys():
-    input_{{inp.strip()}} = snakemake.inputs["{{ inp.strip() }}"]
+if "{{ inp.strip() }}" in snakemake.input.keys():
+    input_{{inp.strip()}} = snakemake.input["{{ inp.strip() }}"]
 else:
     raise MissingInputException("{{ inp.strip() }}")
  {% endfor %}
 
  # Checking outputs
 {% for output in cookiecutter.outputs.split(',') %}
-if "{{ output.strip() }}" in snakemake.outputs.keys():
-    output_{{output.strip()}} = snakemake.outputs["{{ output.strip() }}"]
+if "{{ output.strip() }}" in snakemake.output.keys():
+    output_{{output.strip()}} = snakemake.output["{{ output.strip() }}"]
 else:
     raise MissingOuputException("{{ output.strip() }}")
  {% endfor %}
